@@ -1,5 +1,6 @@
 package com.leo.api.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,11 @@ public class UsuarioService {
 		Optional<Usuario> obj = repository.findById(id);
 		
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Usuario.class.getName()));
+	}
+
+
+	public List<Usuario> findAll() {
+		return repository.findAll();
 	}
 	
 }
