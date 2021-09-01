@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.leo.api.domain.Usuario;
 import com.leo.api.repositories.UsuarioRepository;
+import com.leo.api.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class UsuarioService {
@@ -19,7 +20,7 @@ public class UsuarioService {
 		
 		Optional<Usuario> obj = repository.findById(id);
 		
-		return obj.orElse(null);
+		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Usuario.class.getName()));
 	}
 	
 }
